@@ -1,38 +1,211 @@
 {% extends 'base.html' %}
-
 {% block content %}
+  {% load static %}
 <!-- Body -->
 <div class="container-fluid mt-3">
     <div class="row">
 
-        <!-- Filter -->
-        <div class="col-lg-3 mx-auto">
-            <div class="list-group">
-                <a href="/" class="list-group-item list-group-item-action "> All Products</a>
-                {% for category in categories %}
-                <a href="/?category={{category.id}}" class="list-group-item list-group-item-action "> {{category.name}}</a>
+<!--        &lt;!&ndash; Filter &ndash;&gt;-->
+<!--        <div class="col-lg-3 mt-3">-->
+<!--            <div class="list-group list-group-mine mt-5">-->
+<!--                <a href="/" class="list-group-item list-group-item-mine "> <span>All Products</span></a>-->
+<!--                {% for category in categories %}-->
+<!--                <a href="/?category={{category.id}}" class="list-group-item  list-group-item-mine"><span>-->
+<!--                 {{category.name}}</span></a>-->
+<!--                {% endfor %}-->
+<!--            </div>-->
+<!--        </div>-->
+
+<div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2000">
+  <ol class="carousel-indicators">
+    <li data-bs--target="carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner" >
+    <div class="carousel-item active" >
+      <img class="d-block" src="{% static 'img/laptop.jpg' %}" alt="First slide" >
+      <div class="containers">
+      <strong>Online Shopping</strong>
+      <p>Best Clothes at your doorstep</p>
+        <a href="#" class="btn btn-md btn-primary" > Shop Now</a>
+  </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block " src="{% static 'img/pant.jpg' %}" alt="Second slide">
+      <div class="containers">
+      <strong>djbfjhgfjs</strong>
+      <p>fjhfbjhgfgferugfuergfuefbebfsejbfjsbfjsbfj</p>
+        <a href="#" class="btn btn-md btn-primary" > Shop Now</a>
+  </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block" src="{% static 'img/sho2.jpg' %}" alt="Third slide">
+      <div class="containers">
+      <strong>djbfjhgfjs</strong>
+      <p>fjhfbjhgfgferugfuergfuefbebfsejbfjsbfjsbfj</p>
+        <a href="#" class="btn btn-md btn-primary" > Shop Now</a>
+  </div>
+    </div>
+
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+<!--      &lt;!&ndash; all products &ndash;&gt;-->
+<!--        <div id ="products" class="col-lg-9 mx-auto">-->
+<!--            <div class = "row mx-auto">-->
+<!--    {% for product in products %}-->
+<!--<div class="card mx-auto mb-3" style="width: 18rem;">-->
+<!--  <img class="card-img-top" src="{{product.image.url}}" alt="...">-->
+<!--  <div class="card-body">-->
+<!--    <h2 class="card-title" ><b>{{product.name}}</b></h2>-->
+<!--    <p class="card-text"><b> $ {{product.price}}</b></p>-->
+<!--    <a href="#" class="btn btn-primary border btn-sm list-group-item">Add to Cart</a>-->
+<!--       <div class="card-body mx-auto ">-->
+<!--                                    <a href="#"><i class="fa fa-facebook"></i></a>-->
+<!--                                    <a href="#"><i class="fa fa-twitter"></i></a>-->
+<!--                                    <a href=-"#"><i class="fa fa-pinterest"></i></a>-->
+<!--                                    <a href="#"><i class="fa fa-instagram"></i></a>-->
+<!--                                </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--{% endfor %}-->
+<!--    </div>-->
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</div>-->
+
+
+
+
+    <!-- Product Section Begin -->
+
+    <section class="product spad col-lg-9 mx-auto">
+        <div class="container mx-auto">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="filter__controls mx-auto">
+                        <li class="active" data-filter="*" >Best Sellers</li>
+                        <li class="mixitup-control-active active" data-filter=".new-arrivals">New Arrivals</li>
+                        <li data-filter=".hot-sales">Hot Sales</li>
+                    </ul>
+                </div>
+            </div>
+           <div class="container">
+            <div class="row">
+                 {% for product in products %}
+                <div class=" product__item col-sm-4 mix hot-sales">
+                    <div class="product__item__pic ">
+                        <img src="{{product.image.url}}"  width="360" height="270" alt="images"/>
+                            <span class="label">New</span>
+                            <ul class="product__hover">
+                                <li><a href="#"><img src="{% static 'img/heart.png' %}" alt=""></a></li>
+                                <li><a href="#"><img src="{% static 'img/productsec/compare.png' %}" alt=""> <span>Compare</span></a></li>
+                                <li><a href="#"><img src="{% static 'img/search.png' %}" alt=""></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>{{product.name}}</h6>
+                            <a href="#" class="add-cart"> + Add To Cart</a>
+                            <div class="rating">
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star checked"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5> $ {{product.price }}</h5>
+                            <div class="product__color__select">
+                                <label for="pc-1"> <input type="radio" id="pc-1"> </label>
+                                <label class="active black" for="pc-2"> <input type="radio" id="pc-2"></label>
+                                <label class="grey" for="pc-3">  <input type="radio" id="pc-3"> </label>
+                            </div>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
         </div>
 
-      <!-- all products -->
-        <div id ="products" class="col-lg-9 mx-auto">
-            <div class = "row mx-auto">
-    {% for product in products %}
-<div class="card mx-auto mb-3" style="width: 18rem;">
-  <img class="card-img-top" src="{{product.image.url}}" alt="...">
-  <div class="card-body">
-    <p class="card-title">{{product.name}}</p>
-    <p class="card-text"><b>{{product.price}}</b></p>
-    <a href="#" class="btn btn-light border btn-sm"> <i class="fas fa-cart-plus"></i> Add to Cart</a>
-  </div>
-</div>
-{% endfor %}
-    </div>
-        </div>
 
-    </div>
-</div>
+        </div>
+    </section>
+
+    <!-- Product Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                        </div>
+                        <p>The customer is at the heart of our unique business model, which includes design.</p>
+                        <a href="#"><img src="img/payment.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Categories</h6>
+                        <ul>
+                            <li><a href="#">Clothing Store</a></li>
+                            <li><a href="#">Trending Shoes</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Sale</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Services </h6>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Payment Methods</a></li>
+                            <li><a href="#">Delivary</a></li>
+                            <li><a href="#">Return & Exchanges</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>NewLetter</h6>
+                        <div class="footer__newslatter">
+                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                            <form action="#">
+                                <input type="text" placeholder="Your email">
+                                <button type="submit"><span class="icon_mail_alt"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>Copyright ©
+                            <script> document.write(new Date().getFullYear()); </script>
+                            All rights reserve <i class="fa fa-heart-o" aria-hidden="true"> </i>
+                                  Shop With Pride
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
 
 {% endblock %}
 

@@ -16,3 +16,11 @@ def index(request):
      data['products'] = products
      data['categories']= categories
      return render(request,'index.html',data)
+
+def shop(request):
+     return render(request,'store/shop.html')
+def shopps(Request):
+     return render(request,'shopps.html')
+
+
+
